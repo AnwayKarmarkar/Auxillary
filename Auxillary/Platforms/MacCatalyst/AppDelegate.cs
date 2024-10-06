@@ -1,8 +1,8 @@
 ﻿using Foundation;
 
-namespace Auxillary {
-    [Register("AppDelegate")]
-    public class AppDelegate : MauiUIApplicationDelegate {
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
-    }
+namespace Auxillary; 
+
+[Register("AppDelegate")]
+public class AppDelegate : MauiUIApplicationDelegate {
+    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }

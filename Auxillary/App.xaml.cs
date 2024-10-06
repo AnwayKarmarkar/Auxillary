@@ -1,9 +1,9 @@
-﻿namespace Auxillary {
-    public partial class App : Application {
-        public App() {
-            InitializeComponent();
+﻿namespace Auxillary; 
 
-            MainPage = new MainPage();
-        }
+public partial class App : Application {
+    public App() {
+        InitializeComponent();
+
+        MainPage = new MainPage();
     }
 }
