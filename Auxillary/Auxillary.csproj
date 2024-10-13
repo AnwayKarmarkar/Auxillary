@@ -58,11 +58,25 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Remove="Components\Pages\Index.razor.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Components\Pages\Index.razor.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.91" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.91" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="MudBlazor" Version="7.8.0" />
+        <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AppLayer\AppLayer.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

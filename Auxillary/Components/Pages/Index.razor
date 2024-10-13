@@ -1,0 +1,14 @@
+﻿@page "/"
+@inject AppLayer.ChatGPT.UseCases App
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+@code {
+
+    protected override async Task OnInitializedAsync() {
+        var test = await App.SendPrompt("test");
+    }
+
+}
