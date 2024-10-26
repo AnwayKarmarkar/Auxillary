@@ -1,5 +1,4 @@
 ﻿using AppLayer.Attributes;
-using Infrastructure;
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
 using System.Reflection;
@@ -16,6 +15,7 @@ public static class MauiProgram {
             });
 
         builder.Services.AddMauiBlazorWebView();
+
         builder.Services.AddMudServices();
         var _ = typeof(Infrastructure.ChatGPT.ChatGPTStorageProvider);
         //var classLibraryAssembly = Assembly.Load("Infrastructure");
@@ -33,6 +33,11 @@ public static class MauiProgram {
                 var port = type;
                 var adapter = infrastructureAssembly.GetTypes().Single(x => x.GetInterfaces().Contains(port));
                 builder.Services.Add(new ServiceDescriptor(port, adapter, ServiceLifetime.Transient));
+                continue;
+            }
+            if (type.GetCustomAttributes<ModuleAttribute>().Any()) {
+                builder.Services.Add(new ServiceDescriptor(type, type, ServiceLifetime.Transient));
+                continue;
             }
         }
 #if DEBUG

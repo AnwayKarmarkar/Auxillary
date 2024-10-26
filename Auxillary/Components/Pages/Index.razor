@@ -6,9 +6,27 @@ Welcome to your new app.
 
 
 @code {
+    private const string volumeCommand = "set volume to";
+    private const string openAppCommand = "open";
 
     protected override async Task OnInitializedAsync() {
-        var test = await App.SendPrompt("test");
+        var test = await App.SendPrompt("Auxillary, Set volume to 24");
+        var assistantReply = test.Choices[0].Message.Content;
+        if (assistantReply.StartsWith("SysCmd:")) {
+            var command = assistantReply[7..].Trim().ToLower();
+            await ParseSysCmd(command);
+        };
     }
 
+    private async Task ParseSysCmd(string command) {
+        if (command.StartsWith(volumeCommand, StringComparison.OrdinalIgnoreCase)) {
+            var volumeString = command.Replace(volumeCommand, "").Trim();
+            if (int.TryParse(volumeString, out var volume)) {
+                await App.SetVolume(volume);
+            }
+        }
+        else if (command.StartsWith(openAppCommand, StringComparison.OrdinalIgnoreCase)) {
+
+        }
+    }
 }
